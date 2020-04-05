@@ -2,4 +2,9 @@
 <!-- initial commit -->
 {{classrooms | json}}
 
+
+
+<input #inputbox type="text">
+<button (click)="addNewClassroom(inputbox.value)">Add a new classroom</button>
+
 <router-outlet></router-outlet>

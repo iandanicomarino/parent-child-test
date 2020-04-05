@@ -18,6 +18,11 @@ export class AppComponent implements OnInit{
     }  
   }
 
+  onClickMe(){
+
+
+  }
+
   addNewClassroom(classroomName:string){
     let newclass = new Classroom(classroomName);
     console.log(newclass)
