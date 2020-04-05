@@ -6,7 +6,7 @@
 <h3 *ngIf="classrooms.length == 0">So far you have not added any classroom yet. <br> Try adding one now :)</h3>
 
 <input #inputbox type=" text">
-<button class="button" (click)="addNewClassroom(inputbox.value)">Add a new classroom</button>
+<button class="button" (click)="addNewClassroom(inputbox.value);inputbox.value=''">Add a new classroom</button>
 
 
 <ul class="">
@@ -76,13 +76,13 @@
 
     <div *ngIf="selectedStudent">
         <br> <br>
-        <h3>Student Details <i class="em em-pencil2" aria-role="presentation" aria-label="PENCIL" (click)="toggle('editStudent');"></i></h3>
+        <h3>Student Details <i class="em em-pencil2" aria-role="presentation" aria-label="PENCIL" (click)="toggle('editStudents');"></i></h3>
         <span>Student ID: {{selectedStudent.studentId}}</span><br>
         <span>Student: {{selectedStudent.personalDetails.title}} {{selectedStudent.personalDetails.firstName}} {{selectedStudent.personalDetails.lastName}}  </span><br>
         <span>Age: {{selectedStudent.personalDetails.age}}</span> <br>
         <br>
         <br>
-        <div *ngIf="toggles.editStudent">
+        <div *ngIf="toggles.editStudents">
           
         <label >Student ID: </label>  <br>
         <input type="number" [(ngModel)]="selectedStudent.studentId" placeholder="Student ID" (ngModelChange)="saveAllData()"/> <br>
