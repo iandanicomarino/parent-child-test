@@ -1,6 +1,13 @@
 export class PersonalDetail {
+    title: string;
     firstName: string
-    middlename: string
-    lastname: string
+    middleName: string
+    lastName: string
     age: number  
+ 
+    constructor(fname,mname,lname){
+        this.firstName = fname;
+        this.middleName = mname;
+        this.lastName = lname
+    }
 }

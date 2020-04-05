@@ -1,12 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import {Classroom} from './classes/classroom'
+import { Student } from './classes/student';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  classrooms : Classroom[]
+  classrooms : Classroom[];
+  selectedClass: Classroom;
+  selectedClassIndex: number;
+  toggles : {
+    editClass:boolean
+    editTeacher:boolean
+    editStudents:boolean
+  }
+
   title = 'parent-child';
   
 
@@ -15,17 +24,37 @@ export class AppComponent implements OnInit{
       this.classrooms = JSON.parse(localStorage.getItem("classdata"))
     }else{
       this.classrooms = [];
-    }  
+    }
+    this.toggles = {      
+      editClass:false,
+      editTeacher:false,
+      editStudents:false
+    };
   }
-
- 
-
   addNewClassroom(classroomName:string){
     let newclass = new Classroom(classroomName);
     console.log(newclass)
     this.classrooms.push(newclass);    
     this.saveAllData();
   }
+
+  addNewStudent(firstname:string,middlename:string,lastname:string, id:number){
+    let newStudent = new Student(firstname,middlename,lastname)    
+    newStudent.studentId = id;
+    this.selectedClass.students.push(newStudent);    
+    this.saveAllData();
+  }
+
+  removeClassroom(index:number){
+    this.classrooms.splice(index,1);
+    this.saveAllData()
+  }
+
+  viewClassroom(classroom:Classroom, index:number){
+    this.selectedClass = classroom;
+    this.selectedClassIndex = index;
+  }
+
 
   saveAllData(){
     localStorage.setItem("classdata",JSON.stringify(this.classrooms));
@@ -37,5 +66,14 @@ export class AppComponent implements OnInit{
     return false;
   }
 
+  toggle(property:string){
+    console.log(property)
+    console.log(this.toggles[property])
+    this.toggles[property] = !this.toggles[property] 
+  }
   
+  removeStudent(index:number){
+    this.selectedClass.students.splice(index,1)
+  }
+
 }
