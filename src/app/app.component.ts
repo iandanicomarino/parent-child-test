@@ -12,10 +12,9 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     if(this.isDataExisting()){
-      //getdatahere
+      this.classrooms = JSON.parse(localStorage.getItem("classdata"))
     }else{
       this.classrooms = [];
-      this.addNewClassroom("coolclass")
     }  
   }
 
@@ -24,7 +23,12 @@ export class AppComponent implements OnInit{
   addNewClassroom(classroomName:string){
     let newclass = new Classroom(classroomName);
     console.log(newclass)
-    this.classrooms.push(newclass);
+    this.classrooms.push(newclass);    
+    this.saveAllData();
+  }
+
+  saveAllData(){
+    localStorage.setItem("classdata",JSON.stringify(this.classrooms));
   }
 
   isDataExisting(){
