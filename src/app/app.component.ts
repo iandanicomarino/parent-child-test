@@ -10,6 +10,7 @@ export class AppComponent implements OnInit{
   classrooms : Classroom[];
   selectedClass: Classroom;
   selectedClassIndex: number;
+  selectedStudent: Student
   toggles : {
     editClass:boolean
     editTeacher:boolean
@@ -53,6 +54,11 @@ export class AppComponent implements OnInit{
   viewClassroom(classroom:Classroom, index:number){
     this.selectedClass = classroom;
     this.selectedClassIndex = index;
+  }
+
+  editStudent(student:Student, index:number){
+    this.selectedStudent = student;
+    
   }
 
 

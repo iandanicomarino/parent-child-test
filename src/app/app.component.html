@@ -1,4 +1,5 @@
 <!-- initial commit -->
+<h1>Basic School Tracking System</h1>
 
 <h2>Classrooms</h2>
 
@@ -44,6 +45,7 @@
     
     <h4>Students</h4>
     <h3>New Student</h3>
+    
     <label >Firstname: </label>  <br>
     <input #newStudentFirstName placeholder="First Name"/> <br>
     <label >Middlename: </label> <br>
@@ -56,13 +58,38 @@
     <button (click)="addNewStudent(newStudentFirstName.value,newStudentMiddleName.value,newStudentLastname.value, newStudentId.value)">Add a new student</button>
 
     <ul>
-        <li *ngFor="let student of selectedClass.students; let i = index" (click)="editStudent(student, index)">
+        <li *ngFor="let student of selectedClass.students; let i = index" (click)="editStudent(student, index);">
             <button (click)="removeStudent(i);$event.stopPropagation()"><i class="em em-no_entry" aria-role="presentation" aria-label="Remove"></i></button>            
             {{student.personalDetails.firstName}} {{student.personalDetails.middleName}} {{ student.personalDetails.lastName}}
-            
           </li>
-
     </ul>
+
+    <div *ngIf="selectedStudent">
+
+        <h4>Student ID: {{selectedStudent.studentId}}</h4>
+        <h4>Student: {{selectedStudent.personalDetails.title}} {{selectedStudent.personalDetails.firstName}} {{selectedStudent.personalDetails.lastName}}  </h4>
+        <h4>Age: {{selectedStudent.personalDetails.age}}</h4>
+        <button (click)="toggle('editStudent');"><i class="em em-pencil2" aria-role="presentation" aria-label="PENCIL"></i></button>
+        <div *ngIf="toggles.editStudent">
+          
+        <label >Student ID: </label>  <br>
+        <input type="number" [(ngModel)]="selectedStudent.studentId" placeholder="Student ID" (ngModelChange)="saveAllData()"/> <br>
+        <label >Title: </label>  <br>
+        <input [(ngModel)]="selectedStudent.personalDetails.title" placeholder="Mr/Ms/Mrs" (ngModelChange)="saveAllData()"/> <br>
+        <label >Firstname: </label>  <br>
+        <input [(ngModel)]="selectedStudent.personalDetails.firstName" placeholder="First Name" (ngModelChange)="saveAllData()"/> <br>
+        <label >Middlename: </label> <br>
+        <input [(ngModel)]="selectedStudent.personalDetails.middleName" placeholder="Middle Name" (ngModelChange)="saveAllData()"/> <br>
+        <label >Lastname: </label> <br>
+        <input [(ngModel)]="selectedStudent.personalDetails.lastName" placeholder="Last Name" (ngModelChange)="saveAllData()"/> <br>
+        <label >Age: </label>  <br>
+        <input type="number" [(ngModel)]="selectedStudent.personalDetails.age" placeholder="Age" (ngModelChange)="saveAllData()"/> <br>
+        
+        </div>
+
+    </div>
+
+
  
     
 </div>
