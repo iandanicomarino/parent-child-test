@@ -3,7 +3,7 @@ export class Teacher {
     personalDetails:PersonalDetail
     prcID: number
     constructor(){
-        this.personalDetails = new PersonalDetail()
+        this.personalDetails = new PersonalDetail(null,null,null)
         this.prcID = null
     }
 }
