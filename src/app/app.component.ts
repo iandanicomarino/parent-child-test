@@ -11,6 +11,7 @@ export class AppComponent implements OnInit{
   selectedClass: Classroom;
   selectedClassIndex: number;
   selectedStudent: Student
+  hideStudentInput:boolean;
   toggles : {
     editClass:boolean
     editTeacher:boolean
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit{
       editTeacher:false,
       editStudents:false
     };
+    this.hideStudentInput = true;
   }
   addNewClassroom(classroomName:string){
     let newclass = new Classroom(classroomName);
@@ -48,6 +50,7 @@ export class AppComponent implements OnInit{
 
   removeClassroom(index:number){
     this.classrooms.splice(index,1);
+    this.selectedClass = null;
     this.saveAllData()
   }
 
@@ -80,6 +83,8 @@ export class AppComponent implements OnInit{
   
   removeStudent(index:number){
     this.selectedClass.students.splice(index,1)
+    this.selectedStudent = null;
+    this.saveAllData();
   }
 
 }
