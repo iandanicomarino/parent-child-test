@@ -7,7 +7,8 @@ import {Classroom} from './classes/classroom'
 })
 export class AppComponent implements OnInit{
   classrooms : Classroom[]
-   title = 'parent-child';
+  title = 'parent-child';
+  
 
   ngOnInit(){
     if(this.isDataExisting()){
@@ -18,10 +19,7 @@ export class AppComponent implements OnInit{
     }  
   }
 
-  onClickMe(){
-
-
-  }
+ 
 
   addNewClassroom(classroomName:string){
     let newclass = new Classroom(classroomName);

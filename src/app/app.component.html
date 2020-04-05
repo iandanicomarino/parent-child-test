@@ -1,8 +1,12 @@
 
 <!-- initial commit -->
-{{classrooms | json}}
 
-
+<h2>Classrooms</h2>
+<ul class="">
+  <li *ngFor="let classroom of classrooms" (click)="viewClassroom(classroom)">
+    {{classroom.className}}
+  </li>
+</ul>
 
 <input #inputbox type="text">
 <button (click)="addNewClassroom(inputbox.value)">Add a new classroom</button>
